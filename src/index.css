@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --button-outline: rgba(0, 0, 0, .1);
+  --badge-outline: rgba(0, 0, 0, .05);
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(0, 0, 0, .08);
+  --background: 38 32% 95%;
+  --foreground: 216 24% 14%;
+  --border: 34 14% 80%;
+  --card: 40 40% 98%;
+  --card-foreground: 216 24% 14%;
+  --card-border: 34 16% 86%;
+  --sidebar: 216 28% 12%;
+  --sidebar-foreground: 38 28% 94%;
+  --sidebar-border: 216 16% 20%;
+  --sidebar-primary: 16 52% 52%;
+  --sidebar-primary-foreground: 36 40% 97%;
+  --sidebar-accent: 216 18% 18%;
+  --sidebar-accent-foreground: 38 28% 94%;
+  --sidebar-ring: 16 52% 52%;
+  --popover: 40 36% 97%;
+  --popover-foreground: 216 24% 14%;
+  --popover-border: 34 14% 80%;
+  --primary: 16 58% 34%;
+  --primary-foreground: 36 45% 97%;
+  --secondary: 36 18% 90%;
+  --secondary-foreground: 216 24% 14%;
+  --muted: 36 16% 91%;
+  --muted-foreground: 220 8% 32%;
+  --accent: 36 22% 90%;
+  --accent-foreground: 216 24% 14%;
+  --destructive: 4 68% 36%;
+  --destructive-foreground: 36 45% 97%;
+  --input: 34 12% 72%;
+  --ring: 16 58% 34%;
+  --chart-1: 16 58% 38%;
+  --chart-2: 200 28% 32%;
+  --chart-3: 152 32% 32%;
+  --chart-4: 36 62% 40%;
+  --chart-5: 216 24% 22%;
+  --font-sans: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --button-outline: rgba(255, 255, 255, .1);
+  --badge-outline: rgba(255, 255, 255, .05);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255, 255, 255, .04);
+  --elevate-2: rgba(255, 255, 255, .09);
+  --background: 220 16% 8%;
+  --foreground: 38 18% 90%;
+  --border: 220 8% 22%;
+  --card: 220 14% 11%;
+  --card-foreground: 38 18% 90%;
+  --card-border: 220 8% 18%;
+  --sidebar: 220 18% 7%;
+  --sidebar-foreground: 38 18% 90%;
+  --sidebar-border: 220 10% 16%;
+  --sidebar-primary: 18 58% 62%;
+  --sidebar-primary-foreground: 220 18% 8%;
+  --sidebar-accent: 220 12% 14%;
+  --sidebar-accent-foreground: 38 18% 90%;
+  --sidebar-ring: 18 58% 62%;
+  --popover: 220 14% 12%;
+  --popover-foreground: 38 18% 90%;
+  --popover-border: 220 8% 22%;
+  --primary: 18 58% 62%;
+  --primary-foreground: 220 20% 8%;
+  --secondary: 220 10% 16%;
+  --secondary-foreground: 38 18% 90%;
+  --muted: 220 10% 16%;
+  --muted-foreground: 38 8% 70%;
+  --accent: 220 10% 16%;
+  --accent-foreground: 38 18% 90%;
+  --destructive: 4 62% 58%;
+  --destructive-foreground: 36 40% 97%;
+  --input: 220 8% 28%;
+  --ring: 18 58% 62%;
+  --chart-1: 18 58% 62%;
+  --chart-2: 200 30% 62%;
+  --chart-3: 152 32% 52%;
+  --chart-4: 36 62% 58%;
+  --chart-5: 38 12% 72%;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  margin: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.bi {
+  unicode-bidi: plaintext;
+}
+
+@media print {
+  aside, .no-print {
+    display: none !important;
+  }
+  html, body, #root, main {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
