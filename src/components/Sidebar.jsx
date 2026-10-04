@@ -23,7 +23,7 @@ const NAV_ITEMS = [
 ];
 
 export function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse }) {
-  const { t, lang } = useLanguage();
+  const { t, lang, actor } = useLanguage();
   const [location] = useLocation();
 
   // Detect whether the screen is desktop (>= 768px)
@@ -166,20 +166,32 @@ export function Sidebar({ isOpen, onClose, isCollapsed, onToggleCollapse }) {
           })}
         </nav>
 
-        {/* Informational footer */}
+        {/* User footer */}
         {!isReallyCollapsed ? (
-          <div className="border-t border-sidebar-border p-4 text-xs text-sidebar-foreground/80 transition-all duration-200">
-            <div className="font-medium text-sidebar-foreground">{t.openAccess}</div>
-            <p className="mt-1 leading-relaxed text-sidebar-foreground/70">
-              {t.noLogin}
-            </p>
+          <div className="border-t border-sidebar-border p-3.5 transition-all duration-200">
+            <div className="flex items-center gap-3">
+              {/* Avatar circle with initials */}
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sidebar-primary/20 text-sm font-semibold text-sidebar-primary select-none">
+                {actor ? actor.trim().charAt(0).toUpperCase() : 'D'}
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-sm font-medium text-sidebar-foreground">
+                  {actor || 'Demo User'}
+                </div>
+                <div className="text-[11px] text-sidebar-foreground/50">
+                  {lang === 'ar' ? 'مستخدم تجريبي' : 'Demo account'}
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div
-            className="border-t border-sidebar-border p-3 text-center text-xs text-sidebar-foreground/70 flex justify-center"
-            title={`${t.openAccess}: ${t.noLogin}`}
+            className="border-t border-sidebar-border p-3 flex justify-center"
+            title={actor || 'Demo User'}
           >
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-sidebar-primary" />
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-sidebar-primary/20 text-xs font-semibold text-sidebar-primary select-none">
+              {actor ? actor.trim().charAt(0).toUpperCase() : 'D'}
+            </div>
           </div>
         )}
       </aside>

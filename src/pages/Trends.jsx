@@ -70,7 +70,7 @@ export default function Trends() {
       <div className="mb-4 rounded-md border border-card-border bg-card p-4 shadow-xs">
         <div className="text-sm font-medium text-muted-foreground">{t.effect}</div>
         <div className="num mt-1 text-2xl font-bold text-foreground" data-testid="text-effectiveness">
-          {stats.effectiveness}%
+          {stats?.effectiveness ?? 0}%
         </div>
       </div>
 

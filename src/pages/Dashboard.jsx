@@ -34,17 +34,21 @@ export default function Dashboard() {
 
   const { stats, ncrs, clauses } = data;
 
+  // Null-safe defaults — stats fields are null when the DB has no records yet
+  const byStatus    = stats?.byStatus    ?? {};
+  const clauseHits  = stats?.clauseHits  ?? {};
+
   const kpis = [
-    { label: t.open, value: stats.open, test: "text-kpi-open" },
-    { label: t.overdue, value: stats.overdue, test: "text-kpi-overdue", warn: stats.overdue > 0 },
-    { label: t.criticalOpen, value: stats.critical, test: "text-kpi-critical" },
-    { label: t.closedMonth, value: stats.closedMonth, test: "text-kpi-closed" },
-    { label: t.capaOpen, value: stats.capaOpen || 0, test: "text-kpi-capa" }
+    { label: t.open,       value: stats?.open        ?? 0, test: "text-kpi-open" },
+    { label: t.overdue,    value: stats?.overdue      ?? 0, test: "text-kpi-overdue", warn: (stats?.overdue ?? 0) > 0 },
+    { label: t.criticalOpen, value: stats?.critical   ?? 0, test: "text-kpi-critical" },
+    { label: t.closedMonth,  value: stats?.closedMonth ?? 0, test: "text-kpi-closed" },
+    { label: t.capaOpen,   value: stats?.capaOpen     ?? 0, test: "text-kpi-capa" }
   ];
 
-  const maxStatusCount = Math.max(1, ...WORKFLOW_STAGES.map(v => stats.byStatus[v] || 0));
+  const maxStatusCount = Math.max(1, ...WORKFLOW_STAGES.map(v => byStatus[v] || 0));
 
-  const hotClauses = Object.entries(stats.clauseHits)
+  const hotClauses = Object.entries(clauseHits)
     .map(([id, count]) => ({
       clause: clauses.find(c => String(c.id) === String(id)),
       count
@@ -89,7 +93,7 @@ export default function Dashboard() {
           <h2 className="text-sm font-semibold text-foreground">{t.funnel}</h2>
           <ul className="mt-3 space-y-2.5">
             {WORKFLOW_STAGES.map(stage => {
-              const count = stats.byStatus[stage] || 0;
+              const count = byStatus[stage] || 0;
               const pct = (count / maxStatusCount) * 100;
               return (
                 <li key={stage} className="flex items-center gap-2 text-sm">

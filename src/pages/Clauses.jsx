@@ -56,8 +56,8 @@ export default function Clauses() {
         <ul className="space-y-3">
           {filteredClauses.map(c => {
             const hits = Number(
-              data?.stats.clauseHits[c.id] ||
-              data?.stats.clauseHits[String(c.id)] ||
+              data?.stats?.clauseHits?.[c.id] ??
+              data?.stats?.clauseHits?.[String(c.id)] ??
               0
             );
 

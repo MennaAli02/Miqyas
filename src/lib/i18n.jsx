@@ -369,7 +369,7 @@ export function LanguageProvider({ children }) {
   });
 
   const [actor, setActor] = useState(() => {
-    return localStorage.getItem("miqyas.actor") || "";
+    return localStorage.getItem("miqyas.actor") || "Demo User";
   });
 
   useEffect(() => {
